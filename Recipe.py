@@ -38,5 +38,3 @@ B = Recipe("B", 3, [0, 22, 0])
 C = Recipe("C", 5, [6, 9, 0])
 D = Recipe("D", 2, [20, 15, 6])
 E = Recipe("E", 6, [0, 8, 4])
-
-# print(Recipe.switching_time(A, D))

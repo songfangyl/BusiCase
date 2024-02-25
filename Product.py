@@ -34,13 +34,3 @@ class Product:
 
     def __str__(self):
         return f"Product: {self.product_number}"
-
-
-# product1 = Product(1)
-# product1.complete_step()
-# product1.complete_step()
-# product1.complete_step()
-# product1.complete_step()
-# product1.complete_step()
-# print(product1.product_price)
-# print(product1.next_step().recipes)

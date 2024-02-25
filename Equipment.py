@@ -25,7 +25,6 @@ class Equipment:
                 previous_recipe = self.list_of_process[-1].recipe
                 switching_time = Recipe.Recipe.switching_time(previous_recipe, recipe)
                 total_hour = switching_time + recipe.processing_time + current_hour
-                # print(total_hour)
                 return total_hour <= 168
             return True
         return False
@@ -117,4 +116,3 @@ class Equipment:
         )
 
 
-# print(ALPHA.product_latest_hour(Product.product1))

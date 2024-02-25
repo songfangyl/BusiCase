@@ -53,10 +53,6 @@ class State:
 
         sorted_equipments = sorted(self.equipments, key=lambda equipment: equipment.get_length())
 
-        # print(
-        #     f"Sorted Equipments: {sorted_equipments[0].name}: {sorted_equipments[0].get_length()}, {sorted_equipments[1].name}: {sorted_equipments[1].get_length()}, {sorted_equipments[2].name}: {sorted_equipments[2].get_length()}"
-        # )
-
         random.shuffle(list_of_products)
 
         minimum_unuse_hour = 168
@@ -64,10 +60,8 @@ class State:
         best_recipe = None
         best_equipment = None
         for equipment in sorted_equipments:
-            # print(f"Equipment: {equipment.name}")
 
             for product in list_of_products:
-                # print(f"Product: {product}")
 
                 start_hour = 0
                 for x in self.equipments:  # Check the latest hour of the current product
@@ -79,9 +73,7 @@ class State:
                 random.shuffle(list_of_recipes)
 
                 for recipe in list_of_recipes:
-                    # print(f"Recipe: {recipe}")
                     unuse_hour = equipment.count_unuse_hour(product, recipe, start_hour)
-                    # print(f"Minimum_unuse: {minimum_unuse_hour}")
                     if unuse_hour < minimum_unuse_hour and equipment.is_compatible(
                         recipe, start_hour - 1
                     ):
@@ -107,35 +99,12 @@ class State:
         for equipment in self.equipments:
             start_hour = max(equipment.product_latest_hour(product) + 1, start_hour)
 
-        # print(f"{best_equipment.name}, {best_product}, {best_recipe}")
         best_equipment.fill_new_process(best_product, best_recipe, start_hour)
 
         return True
-
-        # start_hour = 0
-        # list_of_equipments = []
-        # for equipment in self.equipments:
-        #     start_hour = max(equipment.product_latest_hour(product) + 1, start_hour)
-        #     if equipment.is_compatible(recipe, product, start_hour - 1):
-        #         list_of_equipments.append(equipment)
-        # if list_of_equipments:
-        #     choosen_equipment = random.choice(list_of_equipments)
-        #     choosen_equipment.fill_new_process(product, recipe, start_hour)
-        #     return True
-        # else:
-        #     return False
 
     def __str__(self):
         equipments_str = "\n__________________________\n".join(
             str(equipment) for equipment in self.equipments
         )
         return f"{equipments_str}"
-
-
-# state1 = State([Equipment.ALPHA, Equipment.BETA, Equipment.GAMMA])
-# product2 = Product.Product(1)
-# product3 = Product.Product(2)
-# state1.next_valid_state([product2, product3])
-# print(state1)
-# state1.next_valid_state([product2, product3])
-# print(state1)
